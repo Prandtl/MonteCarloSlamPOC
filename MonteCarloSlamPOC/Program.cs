@@ -16,7 +16,13 @@ namespace MonteCarloSlamPOC
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+			Application.Run(
+				new TestField(
+					new TestFieldModel()
+					{
+						Height = 500,
+						Width = 750
+					}));
 		}
 	}
 }
