@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MonteCarloSlamPOC.TestObjects;
 
 namespace MonteCarloSlamPOC
 {
@@ -20,8 +19,19 @@ namespace MonteCarloSlamPOC
 				new TestField(
 					new TestFieldModel()
 					{
+						Width = 750,
 						Height = 500,
-						Width = 750
+						GameObjects = new List<GameObject>()
+						{
+							new GameObject(0,0),
+							new GameObject(10,10),
+							new GameObject(50,50),
+							new GameObject(150,150),
+							new GameObject(300,300),
+							new GameObject(450,270),
+							new GameObject(700, 450),
+							new GameObject(20,40),
+						}
 					}));
 		}
 	}

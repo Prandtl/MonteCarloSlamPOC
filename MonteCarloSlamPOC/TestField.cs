@@ -20,15 +20,26 @@ namespace MonteCarloSlamPOC
 			_model = model;
 
 			drawingBox.Paint += OnPaintDrawingBox;
+
+
 		}
 
 		private void OnPaintDrawingBox(object sender, PaintEventArgs e)
 		{
 			DrawTestField(e.Graphics);
-			Task.Delay(1000).ContinueWith(x => drawingBox.Invalidate());
+			DrawObjects(e.Graphics);
+			//Task.Delay(1000).ContinueWith(x => drawingBox.Invalidate());
 
 		}
-		
+
+		private void DrawObjects(Graphics g)
+		{
+			foreach (var gameObject in _model.GameObjects)
+			{
+				gameObject.DrawFunction?.Invoke(gameObject.X, gameObject.Y, g);
+			}
+		}
+
 		private void DrawTestField(Graphics g)
 		{
 			g.DrawRectangle(_backgroundBorderPen, 5, 5, _model.Width, _model.Height);
