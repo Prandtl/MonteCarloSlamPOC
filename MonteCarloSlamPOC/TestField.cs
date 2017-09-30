@@ -29,12 +29,16 @@ namespace MonteCarloSlamPOC
 				}));
 			};
 
-			var stephandler = new RandomMovementGameLooperStepHandler();
+			var stephandler = new KeyboardMovementStepHandler();
+			
 			_looper = new GameLooper(_model, stephandler, 333);
 			_looper.Start();
 
 			drawingBox.Paint += OnPaintDrawingBox;
+			drawingBox.Focus();
+			KeyDown +=stephandler.OnKeyDown;
 
+			KeyUp += stephandler.OnKeyUp;
 		}
 
 		private void OnPaintDrawingBox(object sender, PaintEventArgs e)
