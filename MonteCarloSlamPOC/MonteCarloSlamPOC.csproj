@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="GameLooper.cs" />
     <Compile Include="GameLooperStepHandlers\IGameLooperStepHandler.cs" />
+    <Compile Include="GameLooperStepHandlers\RandomMovementGameLooperStepHandler.cs" />
     <Compile Include="TestField.cs">
       <SubType>Form</SubType>
     </Compile>

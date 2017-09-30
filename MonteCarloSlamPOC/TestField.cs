@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MonteCarloSlamPOC.GameLooperStepHandlers;
 
 namespace MonteCarloSlamPOC
 {
@@ -12,15 +14,26 @@ namespace MonteCarloSlamPOC
 
 		private TestFieldModel _model;
 		private Graphics _graphics;
+		private GameLooper _looper;
 
 
 		public TestField(TestFieldModel model)
 		{
 			InitializeComponent();
 			_model = model;
+			_model.ModelChanged += () =>
+			{
+				Invoke(new Action(() =>
+				{
+					drawingBox.Refresh();
+				}));
+			};
+
+			var stephandler = new RandomMovementGameLooperStepHandler();
+			_looper = new GameLooper(_model, stephandler, 333);
+			_looper.Start();
 
 			drawingBox.Paint += OnPaintDrawingBox;
-
 
 		}
 
@@ -28,8 +41,6 @@ namespace MonteCarloSlamPOC
 		{
 			DrawTestField(e.Graphics);
 			DrawObjects(e.Graphics);
-			//Task.Delay(1000).ContinueWith(x => drawingBox.Invalidate());
-
 		}
 
 		private void DrawObjects(Graphics g)

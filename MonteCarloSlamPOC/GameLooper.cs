@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
+﻿using System.Timers;
 using MonteCarloSlamPOC.GameLooperStepHandlers;
 
 namespace MonteCarloSlamPOC
@@ -25,12 +20,22 @@ namespace MonteCarloSlamPOC
 
 			_gameTimer = new Timer(LoopInterval);
 			_gameTimer.Elapsed += OnLoopFinished;
+		}
+
+		public void Start()
+		{
 			_gameTimer.Start();
+		}
+
+		public void Stop()
+		{
+			_gameTimer.Stop();
 		}
 
 		private void OnLoopFinished(object sender, ElapsedEventArgs e)
 		{
 			_stepHandler.MakeChanges(_model);
+			_model.InvokeModelChanged();
 		}
 	}
 }
