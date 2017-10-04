@@ -17,7 +17,7 @@ namespace MonteCarloSlamPOC.TestObjects
 
 		public delegate void DrawAtPoint(int x, int y, Graphics g);
 
-		public DrawAtPoint DrawFunction
+		public virtual DrawAtPoint DrawFunction
 		{
 			get
 			{

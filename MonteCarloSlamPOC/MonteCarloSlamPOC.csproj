@@ -49,6 +49,7 @@
     <Compile Include="GameLooperStepHandlers\IGameLooperStepHandler.cs" />
     <Compile Include="GameLooperStepHandlers\KeyboardMovementStepHandler.cs" />
     <Compile Include="GameLooperStepHandlers\RandomMovementGameLooperStepHandler.cs" />
+    <Compile Include="GameLooperStepHandlers\RobotMovementStepHandler.cs" />
     <Compile Include="TestField.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,7 +59,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestFieldModel.cs" />
+    <Compile Include="TestObjects\Beacon.cs" />
     <Compile Include="TestObjects\GameObject.cs" />
+    <Compile Include="TestObjects\Robot.cs" />
     <EmbeddedResource Include="TestField.resx">
       <DependentUpon>TestField.cs</DependentUpon>
     </EmbeddedResource>

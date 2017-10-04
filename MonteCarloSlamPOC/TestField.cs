@@ -23,15 +23,23 @@ namespace MonteCarloSlamPOC
 			_model = model;
 			_model.ModelChanged += () =>
 			{
-				Invoke(new Action(() =>
+				try
 				{
-					drawingBox.Refresh();
-				}));
+					Invoke(new Action(() =>
+					{
+						if (!drawingBox.IsDisposed)
+							drawingBox.Refresh();
+					}));
+				}
+				catch (ObjectDisposedException e)
+				{
+					Console.WriteLine(e);
+				}
 			};
 
-			var stephandler = new KeyboardMovementStepHandler();
+			var stephandler = new RobotMovementStepHandler();
 			
-			_looper = new GameLooper(_model, stephandler, 333);
+			_looper = new GameLooper(_model, stephandler, 50);
 			_looper.Start();
 
 			drawingBox.Paint += OnPaintDrawingBox;
