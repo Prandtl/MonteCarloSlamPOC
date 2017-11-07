@@ -27,7 +27,7 @@ namespace MonteCarloSlamPOC.TestObjects
 					const int arrowLength = 8;
 					var deltaX = (int)(arrowLength * Math.Sin(Angle * Math.PI / 180));
 					var deltaY = (int)(arrowLength * Math.Cos(Angle * Math.PI / 180));
-					g.DrawEllipse(Pens.Crimson, x - 6, y - 6, 12, 12);
+					g.FillEllipse(Brushes.Crimson, x - 6, y - 6, 12, 12);
 					g.DrawLine(Pens.Crimson, x, y, x + deltaX, y + deltaY);
 				};
 			}

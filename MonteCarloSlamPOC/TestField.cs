@@ -37,7 +37,7 @@ namespace MonteCarloSlamPOC
 				}
 			};
 
-			var stephandler = new RobotMovementStepHandler();
+			var stephandler = new RobotWithOdometryStepHandler();
 			
 			_looper = new GameLooper(_model, stephandler, 50);
 			_looper.Start();
