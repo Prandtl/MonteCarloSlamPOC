@@ -22,22 +22,21 @@ namespace MonteCarloSlamPOC
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            var testFieldModel = new TestFieldModel() {
+                Width = TestFieldWidth,
+                Height = TestFieldHeight,
+                GameObjects = new List<GameObject>()
+                {
+                    new Beacon(40, 40, Brushes.Coral),
+                    new Beacon(40, TestFieldHeight - 40, Brushes.DarkMagenta),
+                    new Beacon(TestFieldWidth - 40, 40, Brushes.MediumVioletRed),
+                    new Beacon(TestFieldWidth - 40, TestFieldHeight- 40, Brushes.Green),
+                    new Robot(TestFieldWidth / 2, TestFieldHeight / 2)
+                }
+            };
+            var testField = new TestField(testFieldModel);
 
-            Application.Run(
-                new TestField(
-                    new TestFieldModel() {
-                        Width = TestFieldWidth,
-                        Height = TestFieldHeight,
-                        GameObjects = new List<GameObject>()
-                        {
-                            new Beacon(40, 40, Brushes.Coral),
-                            new Beacon(40, TestFieldHeight - 40, Brushes.DarkMagenta),
-                            new Beacon(TestFieldWidth - 40, 40, Brushes.MediumVioletRed),
-                            new Beacon(TestFieldWidth - 40, TestFieldHeight- 40, Brushes.Green),
-                            new Robot(TestFieldWidth / 2, TestFieldHeight / 2),
-                            new OdometerEstimation(TestFieldWidth / 2, TestFieldHeight / 2)
-                        }
-                    }));
+            Application.Run(testField);
         }
 
         [DllImport("kernel32.dll", SetLastError = true)]

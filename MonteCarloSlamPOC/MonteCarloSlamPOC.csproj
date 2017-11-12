@@ -48,6 +48,7 @@
     <Compile Include="GameLooper.cs" />
     <Compile Include="GameLooperStepHandlers\IGameLooperStepHandler.cs" />
     <Compile Include="GameLooperStepHandlers\KeyboardMovementStepHandler.cs" />
+    <Compile Include="GameLooperStepHandlers\MonteCarloStepHandler.cs" />
     <Compile Include="GameLooperStepHandlers\RandomMovementGameLooperStepHandler.cs" />
     <Compile Include="GameLooperStepHandlers\RobotMovementStepHandler.cs" />
     <Compile Include="GameLooperStepHandlers\RobotWithOdometryStepHandler.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="TestFieldModel.cs" />
     <Compile Include="TestObjects\Beacon.cs" />
     <Compile Include="TestObjects\GameObject.cs" />
+    <Compile Include="TestObjects\Hypothesis.cs" />
     <Compile Include="TestObjects\OdometerEstimation.cs" />
     <Compile Include="TestObjects\Robot.cs" />
     <EmbeddedResource Include="TestField.resx">
