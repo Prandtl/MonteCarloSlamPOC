@@ -14,6 +14,7 @@ namespace MonteCarloSlamPOC.GameLooperStepHandlers
         public const double hypothesisAngleStepDispersion = 2;
         public const double sensorsEps = 20;
         public const double sensorsEpsCalculatedDelta = 2;
+        public const double beaconRadius = 350;
 
         private readonly Random random = new Random();
 
@@ -74,6 +75,7 @@ namespace MonteCarloSlamPOC.GameLooperStepHandlers
             var possibleRobot = testFieldModel.GameObjects.FirstOrDefault(go => go is Robot) as Robot;
             var distances = CalculateDistanceToBeacons(possibleRobot, testFieldModel);
             distances = distances.Select(d => random.NextGaussian(d, sensorsEps + sensorsEpsCalculatedDelta)).ToArray();
+            distances = distances.Select(d => d > beaconRadius ? -1 : d).ToArray();
             var hypotheses = testFieldModel.GameObjects
                 .Where(x => x is Hypothesis)
                 .Select(x => x as Hypothesis)
@@ -88,8 +90,10 @@ namespace MonteCarloSlamPOC.GameLooperStepHandlers
             double result = 1;
             var distancesForHypothesis = CalculateDistanceToBeacons(hypothesis, testFieldModel);
             for (int i = 0; i < distancesFromSensors.Length; i++) {
-                var recieved = distancesForHypothesis[i];
                 var expected = distancesFromSensors[i];
+                if (expected < 0)
+                    continue;
+                var recieved = distancesForHypothesis[i];
                 result *= GetWeightFromNormalDistribution(recieved, expected, sensorsEps);
             }
             return result;
